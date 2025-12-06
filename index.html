@@ -1,0 +1,340 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portafolio de Bruz Vega</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap');
+        
+        /* Estilos para la splash screen */
+        #splash-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #2c3e50; /* Color del header */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='circularLines' patternUnits='userSpaceOnUse' width='100' height='100'%3E%3Cpath d='M50 50 Q70 30 90 50 Q70 70 50 50 Q30 70 10 50 Q30 30 50 50' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3' /%3E%3Cpath d='M20 20 Q40 0 60 20 Q40 40 20 20 Q0 40 -20 20 Q0 0 20 20' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3' /%3E%3Cpath d='M80 80 Q100 60 120 80 Q100 100 80 80 Q60 100 40 80 Q60 60 80 80' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23circularLines)' /%3E%3C/svg%3E");
+            background-repeat: repeat;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 1s ease-in-out;
+        }
+        #splash-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 4rem;
+            color: #fff;
+            animation: logoAnimation 3s ease-in-out;
+            cursor: pointer; /* Para simular interactividad */
+            position: relative;
+        }
+        #mouse-arrow {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            color: #fff;
+            animation: arrowAnimation 3s ease-in-out;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes logoAnimation {
+            0% { transform: scale(0.5); opacity: 0; }
+            50% { transform: scale(1.1); opacity: 1; }
+            80% { transform: scale(1); opacity: 1; }
+            90% { transform: scale(0.95); opacity: 1; } /* Efecto de "click" */
+            100% { transform: scale(1); opacity: 1; }
+        }
+        @keyframes arrowAnimation {
+            0% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+            50% { opacity: 1; transform: translateX(-50%) translateY(0); }
+            80% { opacity: 1; transform: translateX(-50%) translateY(10px); } /* Simula el "clic" bajando */
+            90% { opacity: 1; transform: translateX(-50%) translateY(5px); }
+            100% { opacity: 0; transform: translateX(-50%) translateY(-20px); }
+        }
+        
+        /* Ocultar el contenido principal inicialmente */
+        #main-content {
+            display: none;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif; /* Cambia a 'Gotham' si tienes la fuente local */
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4; /* Fondo base neutro */
+            background-image: url("data:image/svg+xml,%3Csvg width='20' height='20' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='halftone' patternUnits='userSpaceOnUse' width='20' height='20'%3E%3Ccircle cx='5' cy='5' r='1' fill='%23cccccc' /%3E%3Ccircle cx='15' cy='15' r='1' fill='%23cccccc' /%3E%3Ccircle cx='5' cy='15' r='1' fill='%23cccccc' /%3E%3Ccircle cx='15' cy='5' r='1' fill='%23cccccc' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23halftone)' /%3E%3C/svg%3E");
+            background-repeat: repeat;
+            color: #333;
+            line-height: 1.6;
+        }
+        header {
+            background-color: #2c3e50;
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' xmlns='http://www.w3.org/2000/svg'%3E%3Cdefs%3E%3Cpattern id='circularLines' patternUnits='userSpaceOnUse' width='100' height='100'%3E%3Cpath d='M50 50 Q70 30 90 50 Q70 70 50 50 Q30 70 10 50 Q30 30 50 50' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3' /%3E%3Cpath d='M20 20 Q40 0 60 20 Q40 40 20 20 Q0 40 -20 20 Q0 0 20 20' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3' /%3E%3Cpath d='M80 80 Q100 60 120 80 Q100 100 80 80 Q60 100 40 80 Q60 60 80 80' stroke='%23ffffff' stroke-width='1' fill='none' opacity='0.3' /%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23circularLines)' /%3E%3C/svg%3E");
+            background-repeat: repeat;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: white;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+        section {
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        h2 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            margin-bottom: 10px;
+        }
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .skill {
+            background-color: #3498db;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+        }
+        /* Estilos para proyectos y modales */
+        .projects-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .project-card {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: 300px;
+            overflow: hidden;
+            transition: transform 0.3s;
+        }
+        .project-card:hover {
+            transform: translateY(-5px);
+        }
+        .project-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .btn-modal {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn-modal:hover {
+            background-color: #2980b9;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        .modal-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .close:hover {
+            color: black;
+        }
+        .modal-image {
+            width: 100%;
+            height: auto;
+            margin: 10px 0;
+        }
+        @media (max-width: 600px) {
+            section {
+                padding: 20px;
+            }
+            .project-card {
+                width: 100%;
+            }
+            .modal-content {
+                width: 90%;
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Splash Screen -->
+    <div id="splash-screen">
+        <div id="splash-text">Bruz Vega</div>
+        <div id="mouse-arrow">👆</div> <!-- Flecha de mouse apuntando hacia abajo -->
+    </div>
+    
+    <!-- Contenido Principal -->
+    <div id="main-content">
+        <header>
+            <h1>Bruz Vega</h1>
+            <p>Diseñador Gráfico Estudiante | Creativo y Adaptable</p>
+            <nav>
+                <a href="#about">Sobre Mí</a>
+                <a href="#skills">Habilidades</a>
+                <a href="#education">Formación</a>
+                <a href="#projects">Proyectos</a>
+                <a href="#contact">Contacto</a>
+            </nav>
+        </header>
+
+        <section id="about">
+            <h2>Sobre Mí</h2>
+            <p>Hola, soy Bruz Vega, un estudiante de Diseño Gráfico en el 8º tetramestre en la Universidad Lux. Tengo 20 años y soy creativo, responsable, con facilidad para adaptarme a diferentes estilos de diseño y nuevos programas. Manejo herramientas como Illustrator, Photoshop, InDesign, Canva y Microsoft Office, lo que me permite desarrollar proyectos de diseño gráfico y comunicación visual. Busco oportunidades para aplicar mis conocimientos y seguir creciendo en entornos que valoren la innovación y la colaboración.</p>
+            <ul>
+                <li><strong>Edad:</strong> 20 años</li>
+                <li><strong>Teléfono:</strong> 8125787927</li>
+                <li><strong>Correo:</strong> vegabruz@gmail.com</li>
+            </ul>
+        </section>
+
+        <section id="skills">
+            <h2>Habilidades</h2>
+            <h3>Habilidades Blandas</h3>
+            <div class="skills">
+                <span class="skill">Creatividad</span>
+                <span class="skill">Facilidad de adaptación a nuevos programas</span>
+                <span class="skill">Trabajo en equipo</span>
+                <span class="skill">Responsabilidad y compromiso</span>
+                <span class="skill">Comunicación efectiva</span>
+                <span class="skill">Organización y gestión del tiempo</span>
+            </div>
+            <h3>Habilidades Técnicas / Herramientas</h3>
+            <div class="skills">
+                <span class="skill">Adobe Illustrator</span>
+                <span class="skill">Photoshop</span>
+                <span class="skill">InDesign</span>
+                <span class="skill">Canva</span>
+                <span class="skill">Microsoft Office (Word, Excel, PowerPoint)</span>
+                <span class="skill">Edición y retoque fotográfico</span>
+                <span class="skill">Diseño editorial</span>
+                <span class="skill">Creación de presentaciones visuales</span>
+                <span class="skill">Lightroom</span>
+                <span class="skill">Kirita</span>
+            </div>
+        </section>
+
+        <section id="education">
+            <h2>Formación Académica</h2>
+            <ul>
+                <li><strong>Licenciatura en Diseño Gráfico</strong> – Universidad Lux<br>Actualmente cursando el 8º tetramestre.</li>
+            </ul>
+        </section>
+
+        <section id="projects">
+            <h2>Proyectos Relevantes</h2>
+            <p>Soy diseñador gráfico y estos son mis proyectos más destacados, donde aplico mis habilidades en herramientas como Adobe Illustrator, Photoshop y Canva para crear diseños innovadores y efectivos. Mis trabajos incluyen rediseños de logotipos, campañas publicitarias y materiales de marketing digital, enfocados en la creatividad y el impacto visual.</p>
+            <div class="projects-container">
+                <!-- Cuadro interactivo para Perfil de Behance -->
+                <div class="project-card">
+                    <h3>Perfil en Behance</h3>
+                    <p>Visualiza mi portafolio completo en Behance, donde encontrarás más detalles de mis proyectos destacados.</p>
+                    <button class="btn-modal" onclick="openModal('modalBehance')">Ver Perfil</button>
+                </div>
+                <!-- Modal para Perfil de Behance -->
+                <div id="modalBehance" class="modal">
+                    <div class="modal-content">
+                        <span class="close" onclick="closeModal('modalBehance')">&times;</span>
+                        <h3>Perfil en Behance</h3>
+                        <img src="xxas.png" width="100%" height="400" frameborder="0" allowfullscreen></iframe>
+                         <a href="https://www.behance.net/gallery/237858851/Portafolio-Bruz-Vega?tracking_source=search_projects|bruz+vega|l=0" target="_blank">haz clic aquí para ver en Behance</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact">
+            <h2>Contacto</h2>
+            <p>Estoy abierto a nuevas oportunidades. ¡Contáctame para discutir colaboraciones!</p>
+            <ul>
+                <li><strong>Email:</strong> vegabruz@gmail.com</li>
+                <li><strong>Teléfono:</strong> 8125787927</li>
+                <li><strong>LinkedIn:</strong> <a href="https://mx.linkedin.com/in/bruz-vega-7134a635b?trk=people-guest_people_search-card" target="_blank">https://www.linkedin.com/in/bruz-vega</a></li>
+                <li><strong>Behance/Portfolio:</strong> <a href="https://www.behance.net/gallery/237858851/Portafolio-Bruz-Vega?tracking_source=search_projects|bruz+vega|l=0" target="_blank">Ver Portafolio en Behance</a></li>
+            </ul>
+        </section>
+
+        <footer>
+            <p>&copy; 2023 Bruz Vega. Todos los derechos reservados.</p>
+        </footer>
+    </div>
+
+    <!-- JavaScript para Modales y Splash Screen -->
+    <script>
+        // Función para ocultar la splash screen después de 3 segundos
+        setTimeout(function() {
+            document.getElementById('splash-screen').style.display = 'none';
+            document.getElementById('main-content').style.display = 'block';
+        }, 3000); // 3000 ms = 3 segundos
+        
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "block";
+        }
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+        // Cerrar modal al hacer clic fuera
+        window.onclick = function(event) {
+            if (event.target.classList.contains('modal')) {
+                event.target.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
